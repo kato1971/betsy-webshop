@@ -23,7 +23,7 @@ def search(term):
             search_result.append(product.description)
         return search_result
 
-# print('search for tv: ', search('tv'))
+# print('search for tv: ', search('tvr'))
 # print('search for pc: ',search('pc')) 
 # print('search for lenovo: ',search('lenovo'))
 # print('search for apple: ',search('apple'))
@@ -97,8 +97,11 @@ def purchase_product(buyer_id, product_id, quantity):
     
     for amount in query_current_stock:
         current_stock = amount.quantity_in_stock
-    
-    sum_updated_stock = current_stock - quantity
-    return add_transaction, update_stock(product_id, sum_updated_stock)
+        if current_stock < quantity:
+            return print(f"Out of stock")
+        else:
+            sum_updated_stock = current_stock - quantity
+            return add_transaction, update_stock(product_id, sum_updated_stock)
 
 # purchase_product(1, 2, 2)
+# purchase_product(3, 4, 9)
